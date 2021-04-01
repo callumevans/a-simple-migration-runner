@@ -1,0 +1,29 @@
+{
+  "name": "asmr",
+  "version": "0.0.1",
+  "description": "",
+  "main": "src/bin.ts",
+  "devDependencies": {
+    "typescript": "^4.0.5",
+    "@types/minimist": "^1.2.0",
+    "@types/node": "^14.14.6"
+  },
+  "dependencies": {
+    "minimist": "^1.2.5",
+    "postgres": "^1.0.2",
+    "glob-promise": "^3.4.0",
+    "chalk": "^4.1.0",
+    "moment": "^2.29.1",
+    "rimraf": "^3.0.2"
+  },
+  "scripts": {
+    "clean": "rimraf dist",
+    "build": "npm run clean && tsc",
+    "dev-build": "tsc && npm link"
+  },
+  "bin": {
+    "asmr": "./dist/src/bin.js"
+  },
+  "author": "",
+  "license": "ISC"
+}
