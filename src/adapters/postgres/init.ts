@@ -9,7 +9,14 @@ export async function Init(sql: postgres): Promise<InitResult> {
             return new InitResult(InitResultType.AlreadyExists);
         }
 
-        await sql`CREATE TABLE asmr_migrations (id SERIAL PRIMARY KEY, name text UNIQUE, run_date timestamp, asmr_version text);`;
+        await sql`
+            CREATE TABLE asmr_migrations (
+                id SERIAL PRIMARY KEY, 
+                name text UNIQUE, 
+                run_date TIMESTAMP, 
+                asmr_version TEXT, 
+                seed_script_ran BOOLEAN DEFAULT false
+            );`;
     } catch(err) {
         return new InitResult(InitResultType.Error, err);
     }

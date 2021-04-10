@@ -5,6 +5,7 @@ export enum Command {
     Remove = 'remove',
     Up = 'up',
     Down = 'down',
+    Seed = 'seed',
     Reset = 'reset',
     List = 'list',
     Help = 'help',

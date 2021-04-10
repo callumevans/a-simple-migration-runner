@@ -12,6 +12,7 @@ import {Reset} from "./commands/reset";
 import {GetCommand} from "./cli-arguments-parser";
 import {List} from "./commands/list";
 import {Help} from "./commands/help";
+import {Seed} from "./commands/seed";
 
 export async function main() {
     const command = GetCommand();
@@ -34,6 +35,9 @@ export async function main() {
             break;
         case Command.Down:
             await Down();
+            break;
+        case Command.Seed:
+            await Seed();
             break;
         case Command.Reset:
             await Reset();
