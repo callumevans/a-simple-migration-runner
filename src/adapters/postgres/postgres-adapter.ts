@@ -9,6 +9,9 @@ import {ExecuteUpMigration} from "./execute-up-migration";
 import {ExecuteDownMigration} from "./execute-down-migration";
 import {WriteUpMigrationLog} from "./write-up-migration-log";
 import {WriteDownMigrationLog} from "./write-down-migration-log";
+import {ExecuteSeed} from "./execute-seed";
+import {WriteSeededMigrationLog} from "./write-seeded-migration-log";
+import {GetSeededMigrations} from "./get-seeded-migrations";
 
 export class PostgresAdapter implements IAdapter {
     private connectionString: string;
@@ -38,6 +41,10 @@ export class PostgresAdapter implements IAdapter {
         return await GetExecutedMigrations(this.sql);
     }
 
+    async GetSeededMigrations(): Promise<Migration[]> {
+        return await GetSeededMigrations(this.sql);
+    }
+
     async ExecuteUpMigration(migration: Migration): Promise<void> {
         await ExecuteUpMigration(this.sql, migration);
     }
@@ -52,5 +59,13 @@ export class PostgresAdapter implements IAdapter {
 
     async WriteDownMigrationLog(migration: Migration): Promise<void> {
         await WriteDownMigrationLog(this.sql, migration);
+    }
+
+    async ExecuteSeed(migration: Migration): Promise<void> {
+        await ExecuteSeed(this.sql, migration);
+    }
+
+    async WriteSeededMigrationLog(migration: Migration): Promise<void> {
+        await WriteSeededMigrationLog(this.sql, migration);
     }
 }

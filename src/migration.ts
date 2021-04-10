@@ -2,13 +2,13 @@ import * as fs from "fs";
 import * as glob from "glob-promise";
 
 const MIGRATION_NAME_REGEX = new RegExp("\\/migrations\\/(.*)");
-const MIGRATION_FRIENDLY_NAME_REGEX = new RegExp("^(((.*)-)(.*))");
+const MIGRATION_FRIENDLY_NAME_REGEX = new RegExp(/(?<=\-)\s*(.*)/g);
 
 export default class Migration {
     public readonly Name: string;
 
     public get FriendlyName(): string {
-        return MIGRATION_FRIENDLY_NAME_REGEX.exec(this.Name)[4];
+        return this.Name.match(MIGRATION_FRIENDLY_NAME_REGEX)[0];
     }
 
     public async UpMigrationPath(): Promise<string> {
@@ -28,6 +28,17 @@ export default class Migration {
 
         if (!fs.existsSync(path)) {
             throw `No down.sql file for migration '${this.Name}'`;
+        }
+
+        return path;
+    }
+
+    public async SeedPath(): Promise<string> {
+        const directory = await this.Directory();
+        const path = `${directory}/seed.sql`;
+
+        if (!fs.existsSync(path)) {
+            throw `No seed.sql file for migration '${this.Name}'`;
         }
 
         return path;
