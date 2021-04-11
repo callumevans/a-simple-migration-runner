@@ -49,7 +49,7 @@ export async function main() {
             Help();
             break;
         default:
-            AsmrError('Invalid command. Usage: \'asmr init | create | remove | up | down | reset | list | help | version\'');
+            AsmrError('Invalid command. Usage: \'asmr init | create | remove | up | down | seed | reset | list | help | version\'');
     }
 }
 

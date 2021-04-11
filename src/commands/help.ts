@@ -8,6 +8,7 @@ const Commands = [
     { key: 'remove', desc: 'removes a migration' },
     { key: 'up', desc: 'runs all up migrations that have not yet been run' },
     { key: 'down', desc: 'runs the last n downwards migrations (default 1) for migrations that have been run' },
+    { key: 'seed', desc: 'runs data seeding scripts contained in migration directories' },
     { key: 'reset', desc: 'runs all downwards migrations for migrations that have been run' },
     { key: 'list', desc: 'lists all migrations, highlighting migrations that have already been run' },
     { key: 'help', desc: 'displays asmr user guide' },
