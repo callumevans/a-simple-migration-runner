@@ -1,6 +1,6 @@
 {
   "name": "a-simple-migration-runner",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "",
   "main": "src/bin.ts",
   "devDependencies": {
