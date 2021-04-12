@@ -22,8 +22,8 @@ jobs:
 
       - name: Log when changed
         if: steps.check.outputs.changed == 'true'
-        run: 'echo "Version change found in commit ${{ steps.check.outputs.commit }}! New version: ${{ steps.check.outputs.version }} (${{ steps.check.outputs.type }})"'
+        run exit 0
 
       - name: Log when unchanged
         if: steps.check.outputs.changed == 'false'
-        run: 'echo "No version change :/"'
+        run: exit 1
