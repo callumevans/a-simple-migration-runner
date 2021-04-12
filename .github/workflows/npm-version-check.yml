@@ -6,11 +6,11 @@ on:
 
 jobs:
   npm-version-check:
-    id: check
     name: npm-version-check
     runs-on: ubuntu-latest
     steps:
       - name: Version Check
+        id: check
         uses: EndBug/version-check@v2.0.1
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
