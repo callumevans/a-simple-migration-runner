@@ -21,7 +21,7 @@
     "clean": "rimraf dist",
     "build": "npm run clean && tsc",
     "dev-build": "tsc && npm link",
-    "prepare": "npm run build"
+    "prepare": "tsc"
   },
   "bin": {
     "asmr": "./dist/src/bin.js"
