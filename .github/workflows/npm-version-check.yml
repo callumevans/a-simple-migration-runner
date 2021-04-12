@@ -20,10 +20,10 @@ jobs:
           file-url: https://unpkg.com/a-simple-migration-runner@latest/package.json
           static-checking: localIsNew
 
-      - name: Log when changed
+      - name: Version has been updated
         if: steps.check.outputs.changed == 'true'
         run: exit 0
 
-      - name: Log when unchanged
+      - name: Version has not been updated
         if: steps.check.outputs.changed == 'false'
         run: exit 1
