@@ -9,21 +9,6 @@ jobs:
     name: npm-version-check
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repository
+      - name: Check Version
         uses: actions/checkout@v2
-
-      - name: Version Check
-        id: check
-        uses: EndBug/version-check@v2.0.1
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          file-url: https://unpkg.com/a-simple-migration-runner@latest/package.json
-          static-checking: localIsNew
-
-      - name: Version has been updated
-        if: steps.check.outputs.changed == 'true'
-        run: exit 0
-
-      - name: Version has not been updated
-        if: steps.check.outputs.changed == 'false'
-        run: exit 1
+      - uses: kriasoft/check-version@v1
