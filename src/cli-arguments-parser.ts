@@ -1,15 +1,15 @@
 import * as parseArgs from "minimist";
-import * as fs from "fs";
-import * as path from "path";
 import {Adapter} from "./adapter";
 import {Command} from "./command";
+
+require('dotenv').config();
 
 export function GetAdapter(): Adapter {
     return Adapter.Postgres;
 }
 
 export function GetConnectionString(): string {
-    let connectionString = ReadConfigValue('connectionString');
+    let connectionString = ReadEnvironmentValue('CONNECTION_STRING');
 
     if (connectionString) {
         return connectionString;
@@ -49,27 +49,8 @@ export function GetCommand(): Command {
     return <Command> args[0];
 }
 
-const CONFIG_FILE_NAME = path.join(process.cwd(), './asmr-conf.json');
-
-function ReadConfigValue(option: string): string {
-    if (!fs.existsSync(CONFIG_FILE_NAME)) {
-        return null;
-    }
-
-    const configFileData = fs.readFileSync(CONFIG_FILE_NAME, 'utf-8');
-    let config = null;
-
-    try {
-        config = JSON.parse(configFileData)
-    } catch {
-        throw `Error parsing asmr-conf.json`;
-    }
-
-    if (config[option]) {
-        return config[option].toString();
-    }
-
-    return null;
+function ReadEnvironmentValue(option: string): string {
+    return process.env[option];
 }
 
 function GetOption(...option: string[]) {
