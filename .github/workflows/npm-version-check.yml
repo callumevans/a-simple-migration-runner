@@ -13,7 +13,6 @@ jobs:
         uses: EndBug/version-check@v2.0.1
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          static-checking: localIsNew
 
       - name: Log when changed
         if: steps.check.outputs.changed == 'true'
