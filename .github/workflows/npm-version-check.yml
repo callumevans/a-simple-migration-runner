@@ -22,7 +22,7 @@ jobs:
 
       - name: Log when changed
         if: steps.check.outputs.changed == 'true'
-        run exit 0
+        run: exit 0
 
       - name: Log when unchanged
         if: steps.check.outputs.changed == 'false'
