@@ -9,6 +9,9 @@ jobs:
     name: npm-version-check
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
       - name: Version Check
         id: check
         uses: EndBug/version-check@v2.0.1
